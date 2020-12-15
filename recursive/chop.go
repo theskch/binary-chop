@@ -6,9 +6,10 @@ import (
 )
 
 // ChopBinarySearcher uses tail recursive method for binary tree traversion
+// by chopping the array until the searched element is found
 type ChopBinarySearcher struct{}
 
-// Search is the tail recursive implementation of the binary search
+// Search is the tail recursive chop implementation of the binary searcher
 func (cbs ChopBinarySearcher) Search(num int, tree []int) (int, error) {
 	// we only need to check if the tree is valid once, no need to check this in the recursion
 	valid, err := common.ValidateArray(num, tree)

@@ -6,11 +6,12 @@ import (
 )
 
 // BoundsBinarySearcher uses loop search method for binary tree traversion
+// by shinking the array bounds in every iteration until element is found
 type BoundsBinarySearcher struct{}
 
-// Search is the loop implementation of the binary searcher
+// Search is the loop bounds implementation of the binary searcher
 func (bbs BoundsBinarySearcher) Search(num int, tree []int) (int, error) {
-	// we only need to check if the tree is valid once, no need to check this in the loop
+	// validate the tree before entering the loop
 	valid, err := common.ValidateArray(num, tree)
 	if err != nil {
 		return -1, fmt.Errorf("tree is not valid")
@@ -30,12 +31,14 @@ func (bbs BoundsBinarySearcher) Search(num int, tree []int) (int, error) {
 		if tree[mid] == num {
 			return mid, nil
 		} else if tree[mid] > num {
-			// if mid is grater than the `num`, mid - 1 is the new max
+			// if mid element is greater than the `num`, mid - 1 is the new max
 			max = mid - 1
 		} else {
 			// if mid is lower than the `num`, mid + 1 is the new max
 			min = mid + 1
 		}
 	}
+
+	// if the end of the loop is reached and `num` is not found, return -1
 	return -1, nil
 }
