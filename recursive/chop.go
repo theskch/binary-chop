@@ -5,11 +5,11 @@ import (
 	"fmt"
 )
 
-// RChopper uses recursive method for binary tree traversion
-type RChopper struct{}
+// ChopBinarySearcher uses tail recursive method for binary tree traversion
+type ChopBinarySearcher struct{}
 
-// Chop is the recursive implementation of the binary search
-func (rc RChopper) Chop(num int, tree []int) (int, error) {
+// Search is the tail recursive implementation of the binary search
+func (cbs ChopBinarySearcher) Search(num int, tree []int) (int, error) {
 	// we only need to check if the tree is valid once, no need to check this in the recursion
 	valid, err := common.ValidateArray(num, tree)
 	if err != nil {
@@ -20,14 +20,14 @@ func (rc RChopper) Chop(num int, tree []int) (int, error) {
 		return -1, nil
 	}
 
-	return rc.rchop(num, tree, 0), nil
+	return cbs.chop(num, 0, tree), nil
 }
 
-// rchop is the recursive function
+// chop is the tail recursive function
 // `num` is the number being searched
 // `tree` is the array for which we are searching the value
-// `left` is the number of elements that we discarded in the previous step
-func (rc RChopper) rchop(num int, tree []int, left int) int {
+// `left` is the number of elements that we discarded from the left part of the tree in previous steps
+func (cbs ChopBinarySearcher) chop(num, left int, tree []int) int {
 	// this is considered the end of the recursion
 	// if the last element in the array does not equal `num`
 	// return -1
@@ -45,10 +45,10 @@ func (rc RChopper) rchop(num int, tree []int, left int) int {
 
 	mid := int(len(tree) / 2)
 	if tree[mid] > num {
-		return rc.rchop(num, tree[:mid], left)
+		return cbs.chop(num, left, tree[:mid])
 	}
 
 	// if the upper half is taken, sum the left of the previous step
 	// with the number of discarded elements from this step
-	return rc.rchop(num, tree[mid:], left+mid)
+	return cbs.chop(num, left+mid, tree[mid:])
 }

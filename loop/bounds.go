@@ -5,11 +5,11 @@ import (
 	"fmt"
 )
 
-// LChopper uses loop search method for binary tree traversion
-type LChopper struct{}
+// BoundsBinarySearcher uses loop search method for binary tree traversion
+type BoundsBinarySearcher struct{}
 
-// Chop is the loop implementation of the binary search
-func (lc LChopper) Chop(num int, tree []int) (int, error) {
+// Search is the loop implementation of the binary searcher
+func (bbs BoundsBinarySearcher) Search(num int, tree []int) (int, error) {
 	// we only need to check if the tree is valid once, no need to check this in the loop
 	valid, err := common.ValidateArray(num, tree)
 	if err != nil {
