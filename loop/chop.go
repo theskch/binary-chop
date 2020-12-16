@@ -14,7 +14,7 @@ func (cbs ChopBinarySearcher) Search(num int, tree []int) (int, error) {
 	// validate the tree before entering the loop
 	valid, err := common.ValidateArray(num, tree)
 	if err != nil {
-		return -1, fmt.Errorf("tree is not valid")
+		return -1, fmt.Errorf("tree is not ordered")
 	}
 
 	if !valid {
