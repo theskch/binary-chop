@@ -1,13 +1,14 @@
 package main
 
 import (
-	"binary-chop/common"
-	"binary-chop/concurent"
-	"binary-chop/loop"
-	"binary-chop/recursive"
 	"fmt"
 	"os"
 	"time"
+
+	"github.com/theskch/binary-chop/common"
+	"github.com/theskch/binary-chop/concurent"
+	"github.com/theskch/binary-chop/loop"
+	"github.com/theskch/binary-chop/recursive"
 
 	"github.com/jedib0t/go-pretty/v6/table"
 )
