@@ -45,32 +45,26 @@ func (gbbs GreedyBoundsBinarySearcher) Search(num int, tree []int) (int, error) 
 	wg.Add(numOfRoutines)
 
 	for i := 0; i < numOfRoutines; i++ {
-		go func(ctx context.Context) {
+		// id is passed for debuging purpose
+		go func(ctx context.Context, id int) {
 			// when end of the function is reached, result is found, cancel all other routines
 			defer cancel()
 			defer wg.Done()
 
 			min := 0
 			max := len(tree)
-			next := rand.Intn((max - min) + min)
+			var next int
+
 			for {
 				select {
 				case <-ctx.Done():
-					// cancel the routin when the result is found
+					// result was found by one of the routines, exit
 					return
 				default:
 					if min > max {
 						// if min bound is greater than the max bound, element is not found
 						ch <- -1
 						return
-					}
-					if tree[next] == num {
-						ch <- next
-						return
-					} else if tree[next] > num {
-						max = next - 1
-					} else {
-						min = next + 1
 					}
 					// if min bound is equal to the max bound, only one element is not inspected
 					if min == max {
@@ -80,9 +74,17 @@ func (gbbs GreedyBoundsBinarySearcher) Search(num int, tree []int) (int, error) 
 						next = rand.Intn((max - min) + min)
 					}
 
+					if tree[next] == num {
+						ch <- next
+						return
+					} else if tree[next] > num {
+						max = next - 1
+					} else {
+						min = next + 1
+					}
 				}
 			}
-		}(ctx)
+		}(ctx, i)
 	}
 
 	// wait until all go routins exit, to avoid writing in the closed channel and to prevent routin leak
