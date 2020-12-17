@@ -7,7 +7,7 @@ import (
 )
 
 // BoundsBinarySearcher uses tail recursive method for binary tree traversion.
-// In every recursive call bounds of the array are shrinked until the element is found.
+// In every recursive call bounds of the array are shrunk until the element is found.
 type BoundsBinarySearcher struct{}
 
 // Search is the tail recursive bounds implementation of the binary searcher.

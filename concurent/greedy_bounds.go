@@ -11,7 +11,7 @@ import (
 
 // GreedyBoundsBinarySearcher uses go routines (up to 4) for binary tree traversion
 // by selecting arbitrary comparison point instead of the tree mid point in each iteration.
-// This could possibly speed up the seach if the randomly selected index is close to the searching element.
+// This could possibly speed up the search if the randomly selected index is close to the searching element.
 type GreedyBoundsBinarySearcher struct{}
 
 // Search is the greedy bounds concurent implementation fo the binary searcher.

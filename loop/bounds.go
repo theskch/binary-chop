@@ -7,7 +7,7 @@ import (
 )
 
 // BoundsBinarySearcher uses loop search method for binary tree traversion.
-// In every interation array bounds are shrinked until element is found.
+// In every interation array bounds are shrunk until element is found.
 type BoundsBinarySearcher struct{}
 
 // Search is the loop bounds implementation of the binary searcher.
