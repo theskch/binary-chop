@@ -9,17 +9,22 @@ import (
 // BinarySearcher interface contains method for traversing trough the binary tree
 // in search of the index of the element.
 type BinarySearcher interface {
-	// Search is the main method for the binary search.
-	// `num` is the searching element
-	// `tree` is the ordered array of integers
+	// Search is the main method for the binary search
+	//
+	// `num` is the searching element,
+	//
+	// `tree` is the ordered array of integers,
+	//
 	// return value is -1 if the array doesn't contain the element, index of the element or error if array is not in the ascending order
 	Search(num int, tree []int) (int, error)
 }
 
 // ValidateArray checks if the `array` is sorted
 // and if `num` is in bounds of the `array`
-// returns error if array is not sorted
+//
 // true if `num` is in bounds, otherwise false
+//
+// returns error if array is not sorted
 func ValidateArray(num int, array []int) (bool, error) {
 	if !isOrdered(array) {
 		return false, fmt.Errorf("tree is not sorted")
@@ -44,6 +49,7 @@ func isOrdered(array []int) bool {
 }
 
 // RandomNumberArrayGenerator generates array of random integers with the length of `num` sorted in ascending order
+//
 // `skip` contains integers that should be omitted from the array
 func RandomNumberArrayGenerator(num int, skip map[int]bool) []int {
 	retVal := make([]int, num)
