@@ -9,13 +9,13 @@ import (
 // BinarySearcher interface contains method for traversing through the binary tree
 // in search of the index of the element.
 type BinarySearcher interface {
-	// Search is the main method for the binary search
+	// Search is the main method for binary tree traversion.
 	//
-	// `num` is the searching element,
+	// `num` is the searching element.
 	//
-	// `tree` is the ordered array of integers,
+	// `tree` is the ordered array of integers.
 	//
-	// return value index of the element (-1 if element is not found) or error if array is not in the ascending order
+	// Returns index of the element (or -1 if not found), or error if array is not in the ascending order.
 	Search(num int, tree []int) (int, error)
 }
 

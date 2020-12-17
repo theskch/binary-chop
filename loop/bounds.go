@@ -6,11 +6,11 @@ import (
 	"github.com/theskch/binary-chop/common"
 )
 
-// BoundsBinarySearcher uses loop search method for binary tree traversion
-// by shinking the array bounds in every iteration until element is found
+// BoundsBinarySearcher uses loop search method for binary tree traversion.
+// In every interation array bounds are shrinked until element is found.
 type BoundsBinarySearcher struct{}
 
-// Search is the loop bounds implementation of the binary searcher
+// Search is the loop bounds implementation of the binary searcher.
 func (bbs BoundsBinarySearcher) Search(num int, tree []int) (int, error) {
 	// validate the tree before entering the loop
 	valid, err := common.ValidateArray(num, tree)

@@ -6,8 +6,8 @@ import (
 	"github.com/theskch/binary-chop/common"
 )
 
-// ChopBinarySearcher uses tail recursive method for binary tree traversion
-// by chopping the array until the searched element is found
+// ChopBinarySearcher uses tail recursive method for binary tree traversion.
+// In every recursive call part of the array is discarder, until only one element is left.
 type ChopBinarySearcher struct{}
 
 // Search is the tail recursive chop implementation of the binary searcher

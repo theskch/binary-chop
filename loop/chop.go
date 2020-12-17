@@ -6,11 +6,11 @@ import (
 	"github.com/theskch/binary-chop/common"
 )
 
-// ChopBinarySearcher uses loop search method gor binary search traversion
-// by chopping the array in every iteration until element is found
+// ChopBinarySearcher uses loop search method for binary search traversion.
+// In every iteration part of the array is discarder, until only one element is left.
 type ChopBinarySearcher struct{}
 
-// Search is the loop  chop implementation of th binary searcher
+// Search is the loop  chop implementation of th binary searcher.
 func (cbs ChopBinarySearcher) Search(num int, tree []int) (int, error) {
 	// validate the tree before entering the loop
 	valid, err := common.ValidateArray(num, tree)

@@ -10,11 +10,11 @@ import (
 )
 
 // GreedyBoundsBinarySearcher uses go routines (up to 4) for binary tree traversion
-// by selecting arbitrary comparison point instead of the middle in each iteration
-// which could possibly speed up the execution time
+// by selecting arbitrary comparison point instead of the tree mid point in each iteration.
+// This could possibly speed up the seach if the randomly selected index is close to the searching element.
 type GreedyBoundsBinarySearcher struct{}
 
-// Search is the greedy bounds concurent implementation fo the binary searcher
+// Search is the greedy bounds concurent implementation fo the binary searcher.
 func (gbbs GreedyBoundsBinarySearcher) Search(num int, tree []int) (int, error) {
 	// validate the tree before starting with the search
 	valid, err := common.ValidateArray(num, tree)

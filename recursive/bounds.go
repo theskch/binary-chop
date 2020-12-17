@@ -6,11 +6,11 @@ import (
 	"github.com/theskch/binary-chop/common"
 )
 
-// BoundsBinarySearcher uses tail recursive method for binary tree traversion
-// by shrinking the array bounds until element is found
+// BoundsBinarySearcher uses tail recursive method for binary tree traversion.
+// In every recursive call bounds of the array are shrinked until the element is found.
 type BoundsBinarySearcher struct{}
 
-// Search is the tail recursive bounds implementation of the binary searcher
+// Search is the tail recursive bounds implementation of the binary searcher.
 func (bbs BoundsBinarySearcher) Search(num int, tree []int) (int, error) {
 	// we only need to check if the tree is valid once, no need to check this in the recursion
 	valid, err := common.ValidateArray(num, tree)
