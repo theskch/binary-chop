@@ -1,8 +1,9 @@
 package loop
 
 import (
-	"binary-chop/common"
 	"fmt"
+
+	"github.com/theskch/binary-chop/common"
 )
 
 // BoundsBinarySearcher uses loop search method for binary tree traversion

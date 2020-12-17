@@ -1,8 +1,9 @@
 package loop
 
 import (
-	"binary-chop/common"
 	"fmt"
+
+	"github.com/theskch/binary-chop/common"
 )
 
 // ChopBinarySearcher uses loop search method gor binary search traversion

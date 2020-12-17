@@ -1,8 +1,9 @@
 package recursive
 
 import (
-	"binary-chop/common"
 	"fmt"
+
+	"github.com/theskch/binary-chop/common"
 )
 
 // BoundsBinarySearcher uses tail recursive method for binary tree traversion

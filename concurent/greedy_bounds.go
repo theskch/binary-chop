@@ -1,11 +1,12 @@
 package concurent
 
 import (
-	"binary-chop/common"
 	"context"
 	"fmt"
 	"math/rand"
 	"sync"
+
+	"github.com/theskch/binary-chop/common"
 )
 
 // GreedyBoundsBinarySearcher uses go routines (up to 4) for binary tree traversion
