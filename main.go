@@ -1,13 +1,85 @@
 package main
 
-// BinarySearcher interface contains method for traversing trough the binary tree
-// in search of the index of the element.
-type BinarySearcher interface {
-	// Search is the main method for the binary search.
-	// `num` is the searching element
-	// `tree` is the ordered array of integers
-	// return value is -1 if the array doesn't contain the element, index of the element or error if array is not in the ascending order
-	Search(num int, tree []int) (int, error)
+import (
+	"binary-chop/common"
+	"binary-chop/concurent"
+	"binary-chop/loop"
+	"binary-chop/recursive"
+	"fmt"
+	"os"
+	"time"
+
+	"github.com/jedib0t/go-pretty/v6/table"
+)
+
+func main() {
+	skip := map[int]bool{4: true, 11: true}
+	array := common.RandomNumberArrayGenerator(10, skip)
+
+	benchmark("Test case 1: array of 10 elements, element present in array", array[5], array)
+	fmt.Println()
+	benchmark("Test case 2: array of 10 elements, element not present in array", 4, array)
+
+	skip = map[int]bool{980: true, 112: true, 1504: true}
+	array = common.RandomNumberArrayGenerator(1000, skip)
+	fmt.Println()
+	benchmark("Test case 3: array of 1000 elements, element not present in array", array[867], array)
+	fmt.Println()
+	benchmark("Test case 4: array of 1000 elements, element not present in array", 1504, array)
+
+	skip = map[int]bool{8: true, 99000: true, 45890: true}
+	array = common.RandomNumberArrayGenerator(100000, skip)
+	fmt.Println()
+	benchmark("Test case 5: array of 100000 elements, element not present in array", array[57020], array)
+	fmt.Println()
+	benchmark("Test case 6: array of 100000 elements, element not present in array", 99000, array)
+
+	skip = map[int]bool{68: true, 789503: true, 678004: true}
+	array = common.RandomNumberArrayGenerator(10000000, skip)
+	fmt.Println()
+	benchmark("Test case 7: array of 10000000 elements, element not present in array", array[587], array)
+	fmt.Println()
+	benchmark("Test case 8: array of 10000000 elements, element not present in array", 68, array)
 }
 
-func main() {}
+func executeAndTrack(searcher common.BinarySearcher, num int, testSet []int) (time.Duration, int) {
+	start := time.Now()
+	index, _ := searcher.Search(num, testSet)
+	elapsed := time.Since(start)
+	return elapsed, index
+}
+
+func benchmark(name string, num int, array []int) {
+	gbbs := concurent.GreedyBoundsBinarySearcher{}
+	lbbs := loop.BoundsBinarySearcher{}
+	lcbs := loop.ChopBinarySearcher{}
+	rbbs := recursive.BoundsBinarySearcher{}
+	rcbs := recursive.ChopBinarySearcher{}
+
+	t := table.NewWriter()
+	t.SetOutputMirror(os.Stdout)
+	t.SetTitle(name)
+	t.SetAllowedRowLength(500)
+	t.AppendHeader(table.Row{"#", "Name			", "Index			", "Execution Time			"})
+
+	duration, index := executeAndTrack(gbbs, num, array)
+	t.AppendRow(table.Row{"1", "Greedy Bounds", index, duration})
+	t.AppendSeparator()
+
+	duration, index = executeAndTrack(lbbs, num, array)
+	t.AppendRow(table.Row{"2", "Loop Bounds", index, duration})
+	t.AppendSeparator()
+
+	duration, index = executeAndTrack(lcbs, num, array)
+	t.AppendRow(table.Row{"3", "Loop Chop", index, duration})
+	t.AppendSeparator()
+
+	duration, index = executeAndTrack(rbbs, num, array)
+	t.AppendRow(table.Row{"4", "Recursive Bounds", index, duration})
+	t.AppendSeparator()
+
+	duration, index = executeAndTrack(rcbs, num, array)
+	t.AppendRow(table.Row{"5", "Recursive Chop", index, duration})
+	t.AppendSeparator()
+	t.Render()
+}
