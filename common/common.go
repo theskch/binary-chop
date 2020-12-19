@@ -47,9 +47,9 @@ func isOrdered(array []int) bool {
 	})
 }
 
-// RandomNumberArrayGenerator generates array of random integers with the length of `num` sorted in ascending order
+// GenerateRandomArray generates array of unique random integers with the length of `num` sorted in ascending order
 // while omitting all the elements in `skip` map
-func RandomNumberArrayGenerator(num int, skip map[int]bool) []int {
+func GenerateRandomArray(num int, skip map[int]bool) []int {
 	retVal := make([]int, num)
 	gen := randomIntGenerator{generated: make(map[int]bool)}
 

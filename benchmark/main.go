@@ -15,28 +15,28 @@ import (
 
 func main() {
 	skip := map[int]bool{4: true, 11: true}
-	array := common.RandomNumberArrayGenerator(10, skip)
+	array := common.GenerateRandomArray(10, skip)
 
 	benchmark("Test case 1: array of 10 elements, element present in array", array[5], array)
 	fmt.Println()
 	benchmark("Test case 2: array of 10 elements, element not present in array", 4, array)
 
 	skip = map[int]bool{980: true, 112: true, 1504: true}
-	array = common.RandomNumberArrayGenerator(1000, skip)
+	array = common.GenerateRandomArray(1000, skip)
 	fmt.Println()
 	benchmark("Test case 3: array of 1000 elements, element not present in array", array[867], array)
 	fmt.Println()
 	benchmark("Test case 4: array of 1000 elements, element not present in array", 1504, array)
 
 	skip = map[int]bool{8: true, 99000: true, 45890: true}
-	array = common.RandomNumberArrayGenerator(100000, skip)
+	array = common.GenerateRandomArray(100000, skip)
 	fmt.Println()
 	benchmark("Test case 5: array of 100000 elements, element not present in array", array[57020], array)
 	fmt.Println()
 	benchmark("Test case 6: array of 100000 elements, element not present in array", 99000, array)
 
 	skip = map[int]bool{68: true, 789503: true, 678004: true}
-	array = common.RandomNumberArrayGenerator(10000000, skip)
+	array = common.GenerateRandomArray(10000000, skip)
 	fmt.Println()
 	benchmark("Test case 7: array of 10000000 elements, element not present in array", array[587], array)
 	fmt.Println()
